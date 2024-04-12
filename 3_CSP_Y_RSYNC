@@ -1,0 +1,15 @@
+	¿Qué es scp?
+Un comando para copiar archivos entre hosts de una red. Utiliza ssh para la transferencia de datos.
+
+$ scp usuario@ip:ruta
+$ scp 
+scp://usuario@ip:puerto/ruta
+
+-R es para no especificar el puerto
+
+
+	¿Qué es rsync?
+Es una herreamienta para copiar archivos rápida y extraordinariamente versátil. Puede copiar localmente, hacia/desde otro host a través de cualquier shell remoto.
+Por su algorítmo Delta reduce la cantidad de datos enviados.
+
+$ rsync usuario@host:src destino

@@ -1,0 +1,81 @@
+	¿Qué es ssh?
+ssh (Secure Shell) es un programa para iniciar sesión y ejecutar comandos en una máquina remota. Proporciona comunicaciones seguras entre dos host a través de una red insegura.
+
+	¿Cómo usar el comando?
+$ ssh usuario@0.0.0.0 -p 22
+ssh: comando
+usuario: el usuario al que te quieres conectar
+@: indica que es una dirección?
+0.0.0.0: dirección ip de la máquina a la que te vas a conectar
+-p: el puerto por el que quieres entrar
+22: numero de puerto, por lo general, el "22" se usa para conexiones ss
+
+	¿Cómo usar el comando?
+$ ssh usuario@0.0.0.0 -p 22
+ssh: comando
+usuario: el usuario al que te quieres conectar
+@: indica que es una dirección?
+0.0.0.0: dirección ip de la máquina a la que te vas a conectar
+-p: el puerto por el que quieres entrar
+22: numero de puerto, por lo general, el "22" se usa para conexiones sshh
+
+
+	Llaves ssh
+Es una credencial o clave de acceso para el protocolo de red SSH. Consiste en un par de claves, una pública y una privada. Existen de dos tipos "ed25519" y "RSA"
+
+
+	¿Cómo funcionan?
+La clave pública se instala en cualquier servidor y luego se desbloquea mediante la conexión con un cliente SSH que hace uso de la clave privada. Si las dos claves coinciden, el servidor SSH permite el acceso. También podemos añadir una contraseña para agregar una capa más de seguridad.
+
+
+	¿Cómo generarlas?
+Con el comando "ssh-keygen". Crea dos archivos para una llave tipo RSA con la extenssión".pub". Estos archivos los guarda en una carpeta oculta.
+Se puede especificar con el parámentro "ssh-keygen -t rsa"
+Para un número de bits específico "ssh-keygen -t rsa -b 4096"
+También se pueden generar con contraseña
+
+1.- Crear el par de claves RSA
+$ ssh-keygen -t rsa
+
+2.- Almacenar claves y contraseña
+Se nos pedira que inidiquemos la ruta para almacenarla, si no modificamos nada se guardará en la ruta por defecto.
+
+3.- Generar una contraseña para la clave privada
+Se nos pedirá que escribamos una frase de contraseña, si lo dejamos en blanco no creara ninguna. Es recomendable añadirle la contraseña.
+
+	¬ Clave pública /.ssh/id_rsa.pub.
+	¬ Clave privada /.ssh/id_rsa.
+
+
+	¿Cómo compartirlas?
+$ ssh-copy-id user@123.45.67.89
+Esto lo tenemos que hacer dentro del fichero "autorized_keys" en /.ssh
+
+
+	¿Cómo usarla?
+$ ssh -i ~/.ssh/nombre_clave user@255.255.0.1
+La llave SSH se llama nombre_clave
+Se ubica en la carpeta ~/.ssh/
+Se conecta al servidor ip 255.255.0.1
+Y con el usuario "user"
+
+
+	Archivo config de ssh
+Es un archivo de texto que se puede crear para abreviar las las conexiones.
+
+[Para mejorar aún más la seguridad, una vez copiado las claves en el servidor y podamos acceder, podemor RESTRINGIR EL ACCESO VIA SSH AL USUARIO "ROOT". Esto permite el acceso únicamente mediante las claves SSH que hemos generado.]
+
+	¿Cómo se llama y dónde está?
+El archivo se llama config y está en ~/.ssh/
+
+[/etc/ssh/ssh_config (este es otro])
+
+	¿Cómo se usa?
+
+
+[Buscar la línea PasswordAuthentication y editarla para que solo se pueda acceder usando las claves SSH.
+Ejemplo: PasswordAuthentication no
+	Nota: si la línea no existe, tendremos que crearla.
+Guardar los cambios y recargar SSH para que se efectúen.
+Ejemplo: $ sudo systemctl reload sshd] 
+	   

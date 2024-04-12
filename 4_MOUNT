@@ -1,0 +1,136 @@
+	¿Qué es mount?
+Sirve para adjuntar el sistema de archivos que se encuentra en algún dispositivo. Montar una serie de opciones en el sistema para su posterior trabajo. Utilizado para montar dispositivos y particiones para su uso por el sistema operativo.
+Montar es hacer que el sistema operativo proyecte el contenido de ese dispositivo o partición en un enlace lógico (un directorio)
+
+
+	¿Cómo usarlo?
+$ mount [opciones] [--origen] <fuete> | [--objetivo] <directorio>
+$ mount [pciones] <fuente> <directorio>
+$ mount <operación> <puntodemontaje> [<destino>]
+
+para montar una unidad o disco
+$ sudo mount /Ruta_unidad /Ruta_destino
+
+	NOTA: Para saber la ruta donde está el origen, podemos ejecutar:
+	- fdisk -l (Comprobar las unidades disponibles ("discos duros"))
+	- dmesg
+	- lsblk	
+
+	Nomenclatura
+	/sd(!)(#) (sata) donde !={a,...,z) (Solid Disk) #=(Número de partición)
+	/hd(!)(#) (Hard Drive)
+	/dev (devices)
+
+	b --- --- --- donde "b" es un archivo especial de bloques)
+
+En Linux/Unix hay dos tipos de archivos:
+	- Archivo especial de dispositivo de caracteres
+	- Archivo especial de dispositivo de bloques (Esto es para discos)
+
+Parámetros
+-a : monta todos los sitemas de ficheros alojados en fstab
+-f : realiza una prueba de montaje mas no lleva a cabo la opereción
+-T : fichero alternativo a /etc/fstab
+-i :
+-l : Despliega las etiquetas de los sistemas de ficheros
+-n : No escribe datos en /etc/mtab
+-o : Genera la lista de opciones de montaje separadas por coma
+-v : muestra los detalles de la operación realizada
+
+
+	Sistema de Archivos
+Las primeras tarjetas perforadas y cintas magnéticas permitían acceder a la información de manera secuencial. Hoy en día los SISTEMAS DE ARCHIVOS permíten acceder a los datos de forma aleatoria.
+
+	¿Qué es?
+Es el Sistema de almacenamiento de un dispositivo de memoria, que estructura y organiza la escritura, búsqueda, lectura, almacenamiento, edición y eliminación de archivos de una manera concreta. El objetivo de está organización es que el usuario pueda identificar los archivos sin lugar a error y pueda acceder a ellos lo más rápido posible.
+
+Los Sistemas de Archivos otorgan, entre otras cosas, las siguientes características
+- Convenciones para nombrar los archivos
+- Atributos de archivo
+- Control(es) de acceso
+
+Actuan como una interfaz entre el sistema operativo y todos los dispositivos conectados al equipo.
+
+Todos los sistemas de archivos comparten la característica de utilizar una estructura de árbol para organizar los archivos, que parte del directorio raiz.
+
+NOTA: Los Sitemas de Archivos son, en principio, incompatibles entre sí. Sin embargo, siempre se pueden utilizar programas de terceros para hacerlos compatibles.
+
+Los más comúnes:
+- FAT16
+- FAT32
+- exFAT
+- NTFS (Windows)
+- HFS+
+- APFS (Mac OS)
+- ext2, ext3, ext4 (LINUX)
+
+FAT (File Allocation Table o Tabla de Asignasión de Archivos)
+Ideal para gestionar un volumen de datos pequeño. FAT limita el tamaño a 4GB y FAT32 8TB. Sigue siendo muy común su uso, por esto mismo tiene un mayor rango de compatibilidad.
+
+ext4
+Estándar para muchos sistemas Linux. Su novedad más importante es la función "extents", que optimiza la gestión de archivos grandes y evita la fragmentación de manera más eficaz. Las particiones se pueden ampliar o reducir según sea el caso, e incluso durante el procesamiento. Este Sistema de Archivos admite un volumen máximo de 1 exabyte
+
+NTFS (New Technology File Sistem)
+Ofrece al posibilidad de comprimir los medios de almacenamiento y una mayor seguridad de datos. Una característica especial es que los derechos de acceso y recursos compartidos de los archivos y carpetas pueden definirse al detalle.
+
+
+	Diferencia entre tamaño de archivos, formato y como cambiarlo.
+	ls -l
+	du
+
+
+	¿Qué es una tabla de particiones?
+A grandes rasgos es una especie de índice que determina la sección que ocupa cada partición en una misma unidad.
+Los dos esquemas de particiones más habituales actualmente son:
+ - MBR (Master Boot Recorder): Soporta un máximo de 4 particiones primarias. Sólo permite direccionar un máximo de 2 TB de espacio
+ - GPT (GUID Partition Table): En GNU/Linux soporta un máximo de 256 particiones primarias. El tamaño máximo direccionable es de 2.2 ZiB
+
+	¿Cómo crear tablas de particiones?
+$ sudo fdisk /dev/"nombre del disco"
+Dentro de la interfaz presionar g y seguir instrucciones
+
+
+	¿Qué Son las particiones?
+Son volumenes dentro de un mismo disco físico. A nivel lógico, son vistos como unidades totalmente indempendientes.	
+
+	Cómo crear particiones?
+$ sudo fdisk
+Dentro de la interfaz se presiona "n" y se siguen instrucciones
+
+
+	¿Cómo crear sistemas de archivos btrfs?
+
+
+
+	¿Cómo ponerlos en el sistema de archivos?	
+
+
+
+El comando mount necesita 4 cosas básicas
+	- Tipo de Sistema de archivos (-v)
+	- Opciones que influyen en el Sistema de Ficheros (-o)
+	- Qué es lo que se va a montar
+	- Dónde se va a montar (El directorio del punto de montaje)
+
+	NOTA: lo que no se especifique en este comando se encuentra en /etc/fstab (fstab) se encarga de montar las particiones que se necesitaran cuando se arranca el sistema.
+
+
+Marca de disco: fdisk /dev/"disco"
+
+Para crear un sistema de archivos: $  mkfs.(sistema_de_archivos)
+
+	$ sudo mkfs.ext4 /dev/vdb1
+	Formatea la  partición vdb1 y le crea el sistema de archivos ext4
+
+
+
+	Crear y montar particiones
+
+	Verificar el nombre y ruta del disco.
+	$ fdisk -l	* Normalmente se encuenta en /dev/sda1 (disco "a"  partición "1")
+	Para marcar el disco (Crear particiones y tablas de particiones)
+	$ fdisk /dev/sda	* La ruta donde se encuentra el disco
+	La interfaz es bastante intuitiva, por lo que no escribiré como usarla
+	Añadirle un sistema de archivos a cualquier partición
+	
+	

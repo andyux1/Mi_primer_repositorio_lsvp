@@ -1,0 +1,93 @@
+	¿Qué es un control de versiones?
+El sistema de control de versiones (VCS) ayuda a rastrear modificaciones realizadas con el código fuente a medida que se desarrolla un proyecto, permite comparar y analizar cambios con la posibilidad de revertirlos si algo va mal. 
+
+
+
+	¿Qué es Git?
+Es un sistema de control de versiones distribuido, lo que significa que un clon local del proyecto es un repositorio de control de versiones completo. Estos repositorios locales permiten trabajar sin conexión o de forma remota con facilidad. Los desarrolladores confirman su trabajo localmente y, a continución, sincronizan la copia del repositorio con la del servidor.
+
+Git presenta una arquitectura distribuida. En lugar de tener un único espacio para todo el historial de versiones del software, como sucede de manera habitual en los sistemas de control de versiones de antaño populares, la copia del trabajo del código de cada desarrollador es también un repositorio que puede albergar todos los cambios.
+Rendimiento, Seguridad y Flexibilidad.
+
+Es un sistema de control de versiones, un software que sirve basicamente para gestionar las versiones por las que va pasando el código de los proyectos.
+Un software que permite regsitrar un historial de cambios de un proyecto.
+
+
+	¿Qué es Github?
+Es un portal creado para alojar el código de las aplicaciones de cualquier desarrollador. La plataforma está creada para que los desarrolladores súban el código de sus aplicaciones y herramientas, y que como usuarios no sólo puedas descargarte la aplicación, sino también estrar a su perfil para leer sobre ella o colaborar con su desarrollo. La web utiliza un sistema de control de versiones Git.
+
+Es una plataforma de desarrollo colaborativo que aloja proyectos en la nube utilizando el sistema de control de versiones llamado Git. Ayuda a los desarrolladores a almacenar y administrar el código llevando un registro de cambios.
+
+Es un servicio basado en la nube que aloja un sistema de control de versiones llamado Git. Éstu permite a los desarrolladores colaborar y realizar cambios en proyectos compartidos, a la vez que mantinen un seguimiento detallado de su progreso.
+
+
+	¿Cuáles son sus diferencias?
+GitHub es una plataforma donde puedes crear y mantener software e interactuar con otros desarrolladores. Git es un programa que utiliza GitHub para hacer que su plataforma sea perfecta y funcional.
+
+
+	¿Qué es GitLab?
+Es un servicio de alojamiento de código y gestión de versiones, unido a una completa plataforma DevOps
+Es un gestor de repositorios Git que permiten que los equipos colaboren en códigos informáticos. Está escrito en Ruby y Go.
+
+A través de GitLab, puedes administrar grupos, personas, y los permisos que quieras que tengan los usuarios dentro de los grupos o proyectos a los que pertenezcan
+
+
+	Diferencias entre GitHub y GitLab
+Sistemas de autenticación y permisos de acceso, que cuentan con más detalles en GitLab, y por tanto, son más adecuados para los grandes equipos que trabajan en proyectos de gran envergadura.
+
+Sistema de Integración y Entrega Continua. Lo que permite que los equipos de desarrollo ahorren un timepo valioso.
+
+El sistema DevOps de GitLab permite lanzar la Integración Continua o la Entrega Continua de forma automática sin intervención humana.
+
+
+
+	¿Cómo funciona Git?
+Es como un diario en el que se registra todo lo que ha pasado en la vida del proyecto, pero no es lo mismo, es un sistema de control de versiones
+
+TERMINOLOGIA
+	¬ Repositorio: Todo proyecto que está siendo seguido por Git, es decir que ya tiene un hostorial en el que se están registrando sus cambios
+	¬ Commit: Es cada uno de los cambios registrados en el historial de Git. Cada desarrollador manda los commits de los cambios que ha hecho
+	¬ Ramas: Ramificaciones o bifurcaciones que toma el proyecto. Existe una rama principal llamada MASTER que suele ser la versión que sale al pública. Cada vez que quieres trabajar en una característica nueva se suele hacer una rama para trabajar en un entorno aislado
+	¬ Clon: Es una copia exacta del Repositorio. Cuando alguien se integra a un nuevo equipo de trabajo, lo que debe hacer es clonar el repositorio en su equipo local.
+	¬ Fork: Es un proyecto completamente diferente que se crea a partir de otro, por ejemplo, las distros de Linux. 
+
+
+CARACTERÍSTICAS
+	Es distribuido
+		Como las personas del equipo de trabajo tienen una copia local identica del repositorio, significa que no necesitan conectarse a un servidor central ni mucho menos conexión a internet, pueden trabajar en cualquier momento, cada desarrollador tiene un Backup del proyecto
+	Ramas y fusiones (Branch y Merge)
+		Master, Dev, Fixes & Features. Permite trabajar en el proyecto sin alterar o hacer cambios en su versión principal, una vez que se aprueban los cambios se puede fusionar.
+	Integridad de datos
+		Git agrega un Checkso, una suma de comprobación  a cada uno de los archivos y de los commits, de tal manera que cada desarrollador tenga los mismos datos.
+
+	FLUJO DE TRABAJO
+¿Cómo se trabaja con Git?
+
+Básico
+	Crear el repositorio	$ git init (nuevo repositorio)	$ git clone URL_repositorio (clonar un repositorio)
+	* Los cambios que el programador hace no van directamente al repositorio, sino a una parte llamada Stagin Area o Área de preparación
+	Esto con el comando $ git add
+	Cuando estoy seguro de los cambios, lo mando al repositorio con 
+	$ git commit
+
+En equipo
+	Lo normal es tener dos ramas, Master (principal) y Dev (donde se va a trabajar). De esta última cada desarrollador va a sacar su propia rama con lo que le toque trabajar a cada uno.
+	Cuando cada programador termina su parte lo que se hace es un merge, pero para esto de existir un lider de proyecto, quien se encarga de verificar todos estos cambios y que no haya conflitos entre si
+
+
+
+HERRAMIENTAS
+
+Lo mejor es trabajar con línea de comandos (Terminal)
+
+
+
+COMANDOS BÁISCOS
+
+
+
+
+
+
+
+En Git, un historial es un gráfico acíclico dirigido (DAG)

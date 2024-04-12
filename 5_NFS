@@ -1,0 +1,126 @@
+	¿Qué es NFS?
+NFS (Network Files System) - Sistema de Archivos de Red
+Es una aplicación cliente/servidor que permite a un usuario de equipo ver y, opcionalmente, almacenar y actualizar archivos de un equipo remoto como si estuviera en el propio equipo del usuario.
+
+
+
+	¿Qué se necesita en Ubuntu para hacer un servidor NFS?
+
+1.- Descargar e instalar los componentes
+
+	Host
+	Instalar el paquete nfs-kernel-server (permite compartir directorios)
+	$ sudo apt update
+	$ sudo apt install nfs-kernel-server
+
+	En el cliente
+	Instalar el paquete nfs-common (proporciona funcionalidad de NFS sin incluir componentes de servidor)
+	$ sudo apt update
+	$ sudo apt install nfs-common
+
+2.- Crear los directorios compartidos
+	
+	* Los directorios montados en NFS no son parte del sistema sobre el cual se montan, de forma que por defecto, el servidor NFS rechaza realizar operaciones que requieran permisos de superusuario.
+	* Existen usuarios de confianza en el sistema cliente que necesitan realizar acciones sobre el sistema cliente. Puede configurar un servidor NFS para permitir esto, aunque introduce elementos de riesgo, ya que como tal el usuario podría obtener acceso root a todo el sistema host.
+
+Ejemplo 1
+Exportar un montaje de finalidad general
+
+	Host
+	1.- Crear el directorio compartido
+	$ sudo mkdir /var/nfs/(nombre_directorio) -p
+	* Como lo creamos con "sudo" el directorio es propiadad del usuaio root del host
+	* NFS traducirá cualquier operación root sobre el cliente a las credenciales nobody:nogropup como medida de seguridad, por tanto se debe cambiar la propiedad de estos directorios para que coincidad con las credenciales
+	*Cambiar los permisos de los directorios compartido?*
+	*$ sudo chmod -R 755 /compartido*
+	$ sudo chown nobody:nogroup /var/nfs/(nombre_directorio)
+
+Ejemplo 2
+Exportar el directorio de inicio
+
+	Host
+	Para esto exportamos el directorio /home. No cambiamos los permisos. Si se hace eso podría provocar varios problemas para cualquiera con un directorio de inicio en el equipo host
+
+3.- Configurar las exportaciones NFS en el servidor host
+
+	Host
+	$ sudo vim /etc/exports
+	Las líneas de este archivo contienen la siguiente sintaxis.
+	- directorio_a_compartir   cliente_ip(share_option1,...,share_optionN)
+	Se debe crear una línea para cada uno de los directorios a compartir
+	- /var/nfs/(nombre_directorio)    cliente_ip(rw,sync,no_subtree_check)
+	- /home 			  cliente_ip(rw,sync,no_root_squash,no_subtree_check)
+
+	IMPORTANTE NOTA: En cliente_ip es 192.168.0.0/24 para todas las máquinas, Ubuntu server por alguna razón no interpreta los asteríscos como "para todos".
+
+NOTA: para compartirlo con cualquier máquina/cliente en cliente_ip se deja asterisco. Para compartirlo con cualquier máquina de la red se escribre la idrección ip que identifica a la red y la parte que identifica  al equipo se pone con asteriscos.
+
+	¬ rw: esta opción proporciona al cliente acceso de lectura y escritura para el volumen
+	¬ sync: esta opción fuerza a NFS a escribir los cambios en el disco antes de responder.	
+	¬ no_subtree_check: esta opción evita la comprobación de subtree
+	¬ no_root_squash: por defecto, NFS traduce las solicitudes desde un usuario root remotamente a un usuario sin privilegios en el servidor.
+
+	Guardar y cerrar el archivo
+	Para hacer que los cambios esten disponibles para los clientes, reiniciar el servidor NFS
+	$ sudo exportfs -arv
+	Verificar el estado de las exportaciones
+	$ sudo exportfs -v
+	$ sudo systemctl restart nfs-kernel-server ??
+
+	** Cada vez que realicemos cambios en el archivo exports debemos ejecutar $ exportfs -a ; en el servidor NFS para aplicar los cambios
+
+	** Comando exportfs
+		¬ -v: muestra una lista de recursos compartidos y sus opciones configuradas en el archivo /etc/exports
+
+4.- Ajustar el firewall del host  **NO COMPRENDO BIEN** (Necesario?)
+
+	Host
+	Primero, comprobar el estado del firewall y checar que parmite actualmente
+	$ sudo ufw status 
+	Añadimos una regla para el tráfico NFS si no la hay
+	$ sudo ufw allow from cliente_ip to any port nfs  *"any port" es el puerto? ejemplo: 2049
+	Comprobar status
+	$ sudo ufw status
+
+5.- Crear puntos de montaje y directorios de montaje en el cliente
+
+	Cliente
+	Crear directorios para los montajes
+	$ sudo mkdir -p /nfs//(nombre_directorio)
+	$ sudo mkdir -p /nfs/home
+	Montar los intercambios usando la dirección IP de nuestro servidor Host
+	$ sudo mount host_ip:/var/nfs/(nombre_directorio) /nfs/general/
+	$ sudo mount host_ip:/home /nfs/home
+	Comprobar montaje con 
+	$ mount		$ findmnt	$ df -h 	*Este último más legible
+	Ver cuánto espacio se utiliza bajo cada punto de montaje
+	$ su -s -h /ruta_de_montaje 	**-s: proporciona el resumen de su uso en vez de mostrar el uso de cada archivo
+	
+6.- Probar el acceso NFS
+
+Ejemplo 1: El intercambio de finalidad general
+
+	Cliente
+	Crear un archivo de prueba
+	$ sudo touch /nfs/(nombre_directorio/general.test
+	Comprobar la propieadad
+	$ ls -l /nfs/(nombre_directorio/general.test
+
+8.- Desmontar un intercambio remoto NFS
+
+	Cliente
+	Salir de la estructura del directorio de intercambio
+	$ cd
+	$ sudo umount /nfs/(nombre_directorio)
+	$ sudo umount /nfs/home
+
+	
+
+
+
+
+	Objetivo
+- Tomar la partición que hice anteriormente y volverla un NFS
+- Montar NFS en mi máquina
+
+
