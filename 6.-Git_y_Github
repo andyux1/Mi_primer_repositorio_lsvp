@@ -85,7 +85,37 @@ Lo mejor es trabajar con línea de comandos (Terminal)
 COMANDOS BÁISCOS
 
 
+Crear un repositorio en Github
 
+	Nuevo Reposositorio
+	Añadir un nombre y una pequeña descripción
+		*nota: desactivar la opcion Inicializar este repositorio con un READMI
+	Crear repositorio
+
+
+Crear un ropositorio local de algún proyecto
+
+	Nos situamos en el directorio que queremos convertir en repositorio
+
+	
+
+
+
+Configurar llaves SSH en Git y Github
+
+	Copiar la llave llave pública de mi máquina
+	Pegarla en Github en el apartado  Perfil > Settings > SSH and GPG keys
+		Agregar una nueva SSH key
+		Ponerle un título y pegar la llave
+		Añadir SSh key
+	Copiar la llave pública de nuestro repositorio en Github (Clone with SSH)
+	En nuestra máquina, posicionarnos en el proyecto del que copiamos la llave SSH en Github
+		$ git remote -v
+		Setear la ruta ??
+		$ git remote set-url origin "lleva_pública_copiada_copiada_de_Github"
+		Verficar los cambios
+		$ git remote -v
+	Podemos comprobar haciendo un push 
 
 
 
