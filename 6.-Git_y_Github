@@ -121,3 +121,29 @@ Configurar llaves SSH en Git y Github
 
 
 En Git, un historial es un gráfico acíclico dirigido (DAG)
+
+
+git ignore
+
+	Git ve los cambios de tú copia de trabajo de las siguientes maneras
+	1. Con seguimiento: Un archivo que se ha preparado o confirmado previamente
+	2. Sin seguimiento: Un archivo que se ha preparado o confirmado
+	3. Ignorado: Un archivo que se le ha indicado explícitamente a Git que ignore
+
+	Los archivos ignorados suelen ser artefactos de compilación y archivos generados por el equipo. Ejemplos:
+	- Cachés de dependencia, como el contenido de /node_modules o /packages
+	- Código compilado como archivos .o, .pyc, y .class.
+	- Directorios de salida de compilación com /bin, /out, /target.
+	- archivos generados en tiempo de ejecución como, .log, .lock o .tmp
+	- archivos ocultos del sistema como, .DS_Store o Thumbs.db
+	- Archivos personales de configuración de IDE como idea/workspace.xml
+
+A los archivos ignorados de les hace un seguimiento en un archivo especial llamado ".gitignore" que se incorpora en la raíz del repositorio.
+
+En git no hay un comando en específico para ignorar archivos, lo que se hace para ello es editar y confirmar el archivo ".gitignore"
+
+git status
+
+Muestra el estado del directorio de trabajo y del área del entorno del ensayo. Permite ver los cambios que se han preparado, los que no y los archivos en los que git no va a realizar un seguimiento.
+
+Enumera los archivos que se han preparado, los que están sin preparar y los archivos sin seguimiento.
