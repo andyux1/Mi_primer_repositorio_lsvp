@@ -147,3 +147,24 @@ git status
 Muestra el estado del directorio de trabajo y del área del entorno del ensayo. Permite ver los cambios que se han preparado, los que no y los archivos en los que git no va a realizar un seguimiento.
 
 Enumera los archivos que se han preparado, los que están sin preparar y los archivos sin seguimiento.
+
+
+Prueba del gitignore
+
+	Primero se crea el archivo .gitignore en la raíz del repositorio
+	$ vim .gitignore
+	luego se edita para especificar que archivo o ruta se desea ignorar
+	Nota: 
+		- *: se utiliza como coincidencia comodin
+		- /: su usa para ignorar las rutas relativas al archivo .gitignore
+		- #: es usado para agregar comentarios
+	Se guardan los cambios y se cierra
+	En el Repositorio
+	Se eliminan los cambios hechos o archivos/directorios añadidos 
+	$ git rm -r --cached .  --> el "." es para indicar que quiero aplicar el comando a todos los archivos/directorios
+	Se vuelven a añadir los los archivos/directorios a los que se les va a realizar seguimiento
+	$ git add . --> Esto añadirá todos los archivos con excepción de los ignorados
+	Hacer commit
+	$ git commit -m "comentario_de_los_cambios"
+	Hacer push
+	$ git push origin master
