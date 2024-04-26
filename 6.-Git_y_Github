@@ -168,3 +168,39 @@ Prueba del gitignore
 	$ git commit -m "comentario_de_los_cambios"
 	Hacer push
 	$ git push origin master
+
+
+Ver las ramas
+	$ git branch
+	$ git branch -a
+	$ git branch -av
+
+Crear una rama hija
+	$ git branch Nombre_Nueva_Rama
+	Atajo
+	$ git checkout -b Nobre_Nueva_Rama
+	* Cuando se crea una nueva rama, incluirá todas las confirmaciones de la rama padre
+
+Cambiarme a trabajar en esa rama hija
+	Para moverse a una rama existente
+	$ git checkout Nombre_Rama
+
+Remombrar una rama
+	$ git branch -m Viejo_nombre_rama Nuevo_nombre_rama
+
+Eliminar una rama
+	$ git branch -d Nombre_Rama
+	*Git no te permite eleiminar una rama en la que te encunetres actualmente.
+
+Comparar ramas
+	$ git diff Primera_rama Segunda_rama
+	ver una lista de todas las ramas que esetán completamente combinadas
+	$ git branch --merged
+	
+Hacer commits solo en la rama hija
+
+
+Incorporar los commits a la rama principal
+
+
+
