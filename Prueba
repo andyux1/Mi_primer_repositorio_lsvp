@@ -1,0 +1,5 @@
+Esto es una prueba de los cambios efectuados en una rama
+
+Primero se creó un archvio en la rama nueva, después se hizo commit y para finalizar se hizo un push, pero de la forma
+
+	$ git push origin Rama_hija
