@@ -214,7 +214,7 @@ MÁS COMANDOS BÁSICOS
 	Descarga confirmaciones archivos y referencias de un repositoria remoto a tu repositorio local. No te obliga a fusionar los cambios. Git aísla el contenido recuperado del contenido local existente sin tener ningún tipo de repercución sobre el desarrollo local de tu trabajo.
 
 	$ git pull
-	Cescarga el contenido remoto a la rama local activa e inmediatamente ejecuta ($ git merge) para crear para crear un commit fusionado con el nuevo contenido remoto.
+	Descarga el contenido remoto a la rama local activa e inmediatamente ejecuta ($ git merge)  para crear un commit fusionado con el nuevo contenido remoto.
 
 	$ git push
 	Se usa para cargar contenido del repositorio local a un repositorio remoto.
