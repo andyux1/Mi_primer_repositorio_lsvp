@@ -167,4 +167,9 @@ Prueba del gitignore
 	Hacer commit
 	$ git commit -m "comentario_de_los_cambios"
 	Hacer push
-	$ git push origin master
+	$ git push origin maste
+
+
+
+
+Esto es una prueba de modificación de un archivo en común que tienen dos ramas, lo que quiero ver es si generan algún tipo de comflicto y cómo resolverlo.
